@@ -1,0 +1,35 @@
+# Сущности
+type Client {
+  id: ID!
+  name: String
+  age: Int
+  documents: [Document]
+  relatives: [Relative]
+}
+
+type Document {
+  id: ID!
+  type: String
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
+
+# Корневой Query
+type Query {
+  # Получить клиента по ID с возможностью выбрать вложенные сущности
+  client(id: ID!): Client
+
+  # Получить документы клиента по ID отдельно
+  clientDocuments(id: ID!): [Document]
+
+  # Получить родственников клиента по ID отдельно
+  clientRelatives(id: ID!): [Relative]
+}
